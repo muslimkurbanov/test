@@ -28,8 +28,10 @@ class CartManager {
         var dishesCopy = dishesIds
         if dishesCopy[id] == false {
             dishesCopy[id] = true
+            print("dishesCopyId - \(dishesCopy[id])")
         } else {
             dishesCopy[id] = false
+            print("dishesCopyId - \(dishesCopy[id])")
         }
         
         let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: dishesCopy, requiringSecureCoding: false)

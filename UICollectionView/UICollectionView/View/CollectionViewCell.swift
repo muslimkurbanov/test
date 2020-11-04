@@ -49,14 +49,25 @@ class CollectionViewCell: UICollectionViewCell {
 
     @IBAction func addToCartButton(_ sender: Any) {
 
-        if selectButton.isSelected == false {
-            selectButton.isSelected = order?.state ?? true
-            cartManager.plusDishes(order!.id)
-
         
+        if selectButton.isSelected == false {
+            
+            guard let order = self.order else { return }
+            cartManager.plusDishes(order.id)
+
+            self.order?.state = true
+
+            selectButton.isSelected = order.state ?? true
+            print(order.state ?? 0)
+            
         } else {
-            selectButton.isSelected = order?.state ?? false
-            cartManager.plusDishes(order?.id ?? 0)
+            
+            guard let order = self.order else { return }
+            cartManager.plusDishes(order.id ?? 0)
+            
+            self.order?.state = false
+            selectButton.isSelected = order.state ?? false
+            print(order.state ?? 0)
 
         }
     }
