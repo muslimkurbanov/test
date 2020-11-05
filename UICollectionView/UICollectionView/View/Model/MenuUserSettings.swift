@@ -12,30 +12,31 @@ class CartManager {
     private init() {}
     
     private let defaults = UserDefaults.standard
-    private let menuKey = "MENU_PRODUCT"
+    private let menuKey = "LIKE_PRODUCT"
     
-    var dishesIds: [Int: Bool] {
-        guard let decoded  = defaults.object(forKey: menuKey) as? Data else { return [:] }
-        let array = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decoded) as? [Int: Bool]
-        return array ?? [:]
+    var dishesIds: [Int] {
+        let array  = defaults.object(forKey: menuKey) as? [Int]
+//        let array = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decoded) as? [Int]
+        return array ?? []
     }
     
-    func getDishCount(by id: Int) -> Bool? {
-        return dishesIds[id]
+    func addToFavoriteProduct(_ id: Int) -> Bool {
+        return dishesIds.contains(id)
     }
     
-    func plusDishes(_ id: Int) {
+    func selectFavorite(by id: Int) -> Bool {
+        var added: Bool
         var dishesCopy = dishesIds
-        if dishesCopy[id] == false {
-            dishesCopy[id] = true
-            print("dishesCopyId - \(dishesCopy[id])")
-        } else {
-            dishesCopy[id] = false
-            print("dishesCopyId - \(dishesCopy[id])")
-        }
         
-        let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: dishesCopy, requiringSecureCoding: false)
-        defaults.set(encodedData, forKey: menuKey)
+        if dishesCopy.contains(id), let index = dishesCopy.firstIndex(of: id) {
+            dishesCopy.remove(at: index)
+            added = false
+        } else {
+            dishesCopy.append(id)
+            added = true
+        }
+        defaults.set(dishesCopy, forKey: menuKey)
+        return added
     }
     
     

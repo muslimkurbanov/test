@@ -86,11 +86,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05P-4M-9On">
-                                                    <rect key="frame" x="158" y="295" width="25" height="20"/>
+                                                    <rect key="frame" x="158" y="294" width="28" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" backgroundImage="heart"/>
-                                                    <state key="selected" backgroundImage="fillHeart"/>
                                                     <connections>
                                                         <action selector="addToCartButton:" destination="bEq-Tu-zsT" eventType="touchUpInside" id="eWI-nR-ZH6"/>
                                                     </connections>
@@ -105,10 +103,10 @@
                                             </subviews>
                                         </collectionViewCellContentView>
                                         <connections>
+                                            <outlet property="addToFavoriteImage" destination="05P-4M-9On" id="eV6-Ch-Q5z"/>
                                             <outlet property="imageView" destination="ytQ-3G-Vuw" id="hPH-9E-PLv"/>
                                             <outlet property="nameLabel" destination="zrI-de-9Ro" id="cIn-Fi-7Mp"/>
                                             <outlet property="priceLabel" destination="irQ-5N-QFA" id="aT3-U2-sOi"/>
-                                            <outlet property="selectButton" destination="05P-4M-9On" id="C9V-HI-pTQ"/>
                                             <outlet property="titleLabel" destination="dEQ-QA-ZNj" id="cJW-0p-Ypv"/>
                                         </connections>
                                     </collectionViewCell>
@@ -231,8 +229,6 @@
         <image name="arrow-right" width="19" height="11.333333015441895"/>
         <image name="bag" width="24" height="24"/>
         <image name="cart" width="160" height="134"/>
-        <image name="fillHeart" width="19.333333969116211" height="16.333333969116211"/>
-        <image name="heart" width="19.333333969116211" height="16.333333969116211"/>
         <image name="remove" width="18" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

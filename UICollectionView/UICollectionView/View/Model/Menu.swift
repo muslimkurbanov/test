@@ -12,8 +12,6 @@ struct Menu: Decodable {
     var imageLink: String
     var title: String
     var price: Int
-    var favorite: Bool
     var id: Int
-    var count: Int? = 0
-    var state: Bool? = false
+//    var state: Bool? = false
 }

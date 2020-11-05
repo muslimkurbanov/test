@@ -22,24 +22,14 @@ class ViewController: UIViewController {
             collectionView.reloadData()
         }
     }
-    
     var presenter: ViewPresetnerProtocol!
     private let cartManager = CartManager.shared
-    
-//    var itemMenuArray: [Menu] = {
-//        var blankMenu = Menu()
-//        blankMenu.brand = "CocaCola"
-//        blankMenu.imageLink = "cola"
-//        print("blankMenu")
-//        return [blankMenu]
-//        
-//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         presenter = MainViewPresenter(view: self)
-
+        
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
     }
@@ -55,8 +45,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! CollectionViewCell
         let item = searchResponse[indexPath.row]
-        let count = cartManager.getDishCount(by: item.id)
-        cell.configurate(with: item, delegate: self)
+        let isLiked = cartManager.addToFavoriteProduct(item.id)
+        cell.configurate(with: item, isLiked)
         
         return cell
     }
@@ -74,16 +64,3 @@ extension ViewController: ViewProtocol {
     }
 }
 
-extension ViewController: MenuCollentionViewCellDelegate {
-    func orderAdded(_ order: Menu?) {
-        guard cartManager.dishesIds.count < 2 else { return }
-
-    }
-    
-    func orderDeleted(_ order: Menu) {
-        guard cartManager.dishesIds.count == 0 else { return }
-
-    }
-    
-    
-}
